@@ -1,26 +1,32 @@
-from money import Money 
+from stations import Stations
 from printer import Printer
-from stations import Stations 
+from money import Money
 
-money_machine = Money()
-printer = Printer()
+
+
 stations = Stations()
+printer = Printer()
+money = Money()
 
 is_on = True 
-
 while is_on:
-    options = stations.get_stations()
-    print(options)
-    choice = input(F"Where you want to go:")
+    print(stations.get_stations())
+    choice = input("Where you wanna go:")
+    
     if choice == 'off':
-        is_on = False 
-    elif choice == 'report':
+        is_on = False
+    
+    if choice == 'report':
+        money.report()
         printer.report()
-        money_machine.report()
+
+
     else:
         station = stations.find_station(choice)
         if station is None:
             print("Wrong Input")
-        else:
-            if printer.is_resources_sufficient and money_machine.make_payment(station.cost):
+        else: 
+            if printer.has_enough_resources() and money.make_payment(station.cost):
                 printer.print_ticket(station)
+
+

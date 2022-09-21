@@ -1,7 +1,5 @@
 class Money:
 
-    CURRENCY = '₹'
-
     CURRENCY_VALUES = {
         "20's Note": 20,
         "10's Note/Coin": 10,
@@ -9,33 +7,36 @@ class Money:
         "2's Coin": 2,
         "1's Coin": 1
     }
-
     def __init__(self):
         self.profit = 0
-        
-
+    
     def report(self):
-        '''Prints the current profit'''
-        print(f'Money: {self.CURRENCY}{self.profit}')
-
+        '''prints profit'''
+        print(f"Total Profit: {self.profit}")
 
     def process_money(self):
-        '''Returns the total calculatoed from Notes/Coins inserted'''
-        print("Please insert Notes/Coins.")
-        money_received = 0
+        '''Take input from user, returns total calculated Notes/Coins inserted'''
+        print("Please insert Note/Coin")
+        money_recieved = 0
         for currency in self.CURRENCY_VALUES:
-            money_received += int(input(f"How many {currency}?:")) * self.CURRENCY_VALUES[currency]
-
-        return money_received
+            money_recieved += int(input(f"How many {currency}?:")) * self.CURRENCY_VALUES[currency]
+        return money_recieved
 
     def make_payment(self, cost):
-        '''Returns True if the payment accepted or return False'''
-        money_received = self.process_money()
-        if money_received >= cost:
-            change = round(money_received - cost, 2)
-            print(f'Here is {self.CURRENCY}{change} in change.')
+        '''Returns True if the payment accepted otherwise return False'''
+        money_recieved = self.process_money()
+        if money_recieved >= cost:
+            change = money_recieved - cost 
+            if change != 0:
+                print(f"Here is ₹{change} change.")
             self.profit += cost 
-            return True 
+            return True
         else:
-            print("Not enough money! Money refunded")
+            print("Not enough money! Money Refunded")
             return False
+
+
+
+
+
+

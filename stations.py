@@ -1,15 +1,14 @@
 class Station:
-    '''Models each Station'''
+    '''Models each station'''
     def __init__(self, name, distance, cost):
         self.name = name
         self.distance = distance 
-        self.cost = cost  
-
+        self.cost = cost
 
 
 class Stations:
-    '''Models the Stations'''
-    def __init__(self): 
+    '''Models the stations'''
+    def __init__(self):
         self.stations = [
             Station(name="Fatehganj", distance=10, cost=20),
             Station(name="Tisua", distance=15, cost=25),
@@ -23,12 +22,18 @@ class Stations:
         '''Return all the stations'''
         options = ""
         for station in self.stations:
-            options = options + f'{station.name}\n'
+            options = options + f"\n{station.name}, Cost: {station.cost}"
         return options
 
     def find_station(self, station_name):
-        '''searches for station in given stations. If exists - return the item, otherwise return None'''
+        '''Searches the station and return it, if not found return None'''
         for station in self.stations:
             if station.name == station_name:
                 return station
+        
+
+
+
+
+
 
